@@ -37,5 +37,5 @@ class JSONParser:
             if trx['type'] == 'Transferência - Liquidação':
                 print(trx)
 
-                if trx['operation'] =
+                if trx['operation'] = ""
 
