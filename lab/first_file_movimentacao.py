@@ -106,7 +106,7 @@ def inserir_json_na_planilha(json_data, arquivo_planilha, aba="Planilha1"):
 
 if __name__ == '__main__':
     # Diretório contendo os arquivos
-    directory_path = 'files_movimentacao'
+    directory_path = '../files/movimentacao'
 
     # Carregar e processar os dados de todos os arquivos no diretório
     combined_df = load_and_format_data_from_directory(directory_path)

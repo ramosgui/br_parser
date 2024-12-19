@@ -35,7 +35,7 @@ class XLSXParser:
         df = df.drop(columns=self._COLUMN_TO_DROP, errors='ignore')
         return df
 
-    def get_xlsx_content(self, directory_path: str = 'files_movimentacao') -> List[DataFrame]:
+    def get_xlsx_content(self, directory_path: str = 'movimentacao') -> List[DataFrame]:
         file_pattern = f'../{directory_path}/*.xlsx'
         all_records = []
         for file in glob.glob(file_pattern):
