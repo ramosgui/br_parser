@@ -8,8 +8,9 @@ from b3_parser.core.transaction.repository.transaction_repository import Transac
 
 class PositionRepository:
 
-    def __init__(self, transaction_repository: TransactionRepository):
+    def __init__(self, transaction_repository: TransactionRepository, position_calculator: PositionCalculator):
         self._transaction_repository = transaction_repository
+        self._position_calculator = position_calculator
 
     def get_all_positions(self) -> List[PositionModel]:
         set_products = set()
@@ -22,9 +23,8 @@ class PositionRepository:
             transactions = self._transaction_repository.get_transactions(product_ids=product_ids)
             sorted_transactions = sorted(transactions, key=lambda x: (x.date, x.type))
 
-            transfer = []
-            position_calculator = PositionCalculator(sorted_transactions, transfer=transfer)
-            position_model = PositionModel(product_id=product_id, transactions=sorted_transactions, position_calculator=position_calculator)
+            self._position_calculator.initialize_transactions(sorted_transactions)
+            position_model = PositionModel(product_id=product_id, transactions=sorted_transactions, position_calculator=self._position_calculator)
             print(f"product_id: {position_model.product_id}, qtd: {position_model.qtd}, pm: {position_model.pm}, "
                   f"type: {position_model.type}, new_pm: {position_model.new_pm}, new_qtd: {position_model.new_qtd}")
 

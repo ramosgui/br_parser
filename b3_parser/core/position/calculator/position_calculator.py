@@ -9,26 +9,34 @@ class PositionCalculator:
     Classe responsável por calcular a posição (quantidade e preço médio) a partir de uma lista de transações.
     Aplica diferentes estratégias de acordo com o tipo da transação.
     """
-    def __init__(self, transactions: List[TransactionModel], transfer):
-        self._transfer = transfer
-        self._transactions = transactions
+    def __init__(self):
+        self._position_transactions = None
+
+    def initialize_transactions(self, position_transactions: List[TransactionModel]):
+        self._position_transactions = position_transactions
 
     def calculate_quantity(self) -> int:
+        if not self._position_transactions:
+            raise Exception('Necessário inicializar as transações da posição primeiramente.')
+
         qtd = 0
         total_price = 0
         transfer = []
-        for trx in self._transactions:
+        for trx in self._position_transactions:
             strategy = PositionStrategyFactory.get_strategy(type_=trx.type, transfer=transfer)
             if strategy:
                 qtd, total_price = strategy.apply(trx, qtd, total_price)
         return qtd
 
     def calculate_pm(self) -> float:
+        if not self._position_transactions:
+            raise Exception('Necessário inicializar as transações da posição primeiramente.')
+
         qtd = 0
         total_price = 0
         transfer = []
 
-        for trx in self._transactions:
+        for trx in self._position_transactions:
             strategy = PositionStrategyFactory.get_strategy(type_=trx.type, transfer=transfer)
             if strategy:
                 qtd, total_price = strategy.apply(trx, qtd, total_price)
