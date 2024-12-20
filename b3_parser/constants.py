@@ -95,3 +95,9 @@ ALLOWED_PRODUCTS = {
         'ideal': 0.05
     }
 }
+
+
+def get_product_by_ticket_id(ticket_id: str):
+    result = [x for x, y in ALLOWED_PRODUCTS.items() if ticket_id in y['tickets']]
+    if result:
+        return ALLOWED_PRODUCTS[result[0]]

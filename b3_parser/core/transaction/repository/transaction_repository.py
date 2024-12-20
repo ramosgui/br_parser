@@ -1,6 +1,6 @@
 from typing import List
 
-from b3_parser.core.models.transaction_model import TransactionModel
+from b3_parser.core.transaction.model.transaction_model import TransactionModel
 from b3_parser.utils.xlsx.xlsx_parser import XLSXParser
 
 
