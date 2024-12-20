@@ -25,9 +25,6 @@ class PositionRepository:
 
             self._position_calculator.initialize_transactions(sorted_transactions)
             position_model = PositionModel(product_id=product_id, transactions=sorted_transactions, position_calculator=self._position_calculator)
-            print(f"product_id: {position_model.product_id}, qtd: {position_model.qtd}, pm: {position_model.pm}, "
-                  f"type: {position_model.type}, new_pm: {position_model.new_pm}, new_qtd: {position_model.new_qtd}")
-
             positions.append(position_model)
 
         return positions

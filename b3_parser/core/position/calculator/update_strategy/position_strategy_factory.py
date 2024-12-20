@@ -29,6 +29,3 @@ class PositionStrategyFactory:
     def get_strategy(type_: str, transfer: List[TransactionModel], subscricoes: List[TransactionModel]) -> BasePositionStrategy:
         if type_ in PositionStrategyFactory._strategies:
             return PositionStrategyFactory._strategies[type_](transfer, subscricoes)
-        else:
-            if type_ not in ['dividendo', 'juros sobre capital próprio', 'transferência', 'rendimento']:
-                print('invalid type', type_)
