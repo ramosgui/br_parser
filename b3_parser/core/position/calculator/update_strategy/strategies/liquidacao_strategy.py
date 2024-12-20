@@ -17,19 +17,16 @@ class LiquidacaoPositionStrategy(BasePositionStrategy):
 
         trx_qtd = trx.qtd
         trx_total = trx.total_price
+        pm = (total_price / qtd) if qtd > 0 else 0
 
         if trx.in_out == 'in':
             qtd += trx_qtd
             if trx_total is not None:
                 total_price += trx_total
             else:
-                pm = (total_price / qtd) if qtd > 0 else 0
                 total_price += trx_qtd * pm
         else:
-            # saída
-            old_qtd = qtd
             qtd -= trx_qtd
-            pm = (total_price / old_qtd) if old_qtd > 0 else 0
             total_price -= trx_qtd * pm
 
         return PositionMapping(qtd=qtd, total_price=total_price)

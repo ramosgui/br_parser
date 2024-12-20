@@ -22,10 +22,13 @@ class PositionCalculator:
         qtd = 0
         total_price = 0
         transfer = []
+        subs = []
+
         for trx in self._position_transactions:
-            strategy = PositionStrategyFactory.get_strategy(type_=trx.type, transfer=transfer)
+            strategy = PositionStrategyFactory.get_strategy(type_=trx.type, transfer=transfer, subscricoes=subs)
             if strategy:
                 qtd, total_price = strategy.apply(trx, qtd, total_price)
+
         return qtd
 
     def calculate_pm(self) -> float:
@@ -35,9 +38,10 @@ class PositionCalculator:
         qtd = 0
         total_price = 0
         transfer = []
+        subs = []
 
         for trx in self._position_transactions:
-            strategy = PositionStrategyFactory.get_strategy(type_=trx.type, transfer=transfer)
+            strategy = PositionStrategyFactory.get_strategy(type_=trx.type, transfer=transfer, subscricoes=subs)
             if strategy:
                 qtd, total_price = strategy.apply(trx, qtd, total_price)
         return round(total_price / qtd, 2) if qtd > 0 else 0.0
