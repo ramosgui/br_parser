@@ -82,7 +82,7 @@ b3_parser/
 
    ```bash
    python -m venv venv
-   source venv/bin/activate  # No Windows: venv\Scriptsctivate
+   source venv/bin/activate  # No Windows: venv\Scripts\Activate
    ```
 
 4. Instale as dependências:
@@ -94,16 +94,10 @@ b3_parser/
 ## Uso
 
 1. Certifique-se de que os arquivos de dados (`.xlsx`) estejam no diretório `files/`.
-2. Execute os scripts conforme necessário. Por exemplo:
+2. Execute o serviço principal para processar os dados:
 
    ```bash
-   python first_file_movimentacao.py
-   ```
-
-   ou
-
-   ```bash
-   python first_file_negociacao.py
+   python service.py
    ```
 
 ## Contribuição

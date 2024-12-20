@@ -1,2 +1,2 @@
 # Ignore all files inside the files directory
-files/*
+/b3_parser/files/*
