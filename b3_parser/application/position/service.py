@@ -1,6 +1,6 @@
-from b3_parser.core.models.position_model import PositionModel
-from b3_parser.core.repositories.position_repository import PositionRepository
-from b3_parser.core.repositories.transaction_repository import TransactionRepository
+from b3_parser.core.position.model.position_model import PositionModel
+from b3_parser.core.position.repository.position_repository import PositionRepository
+from b3_parser.core.transaction.repository.transaction_repository import TransactionRepository
 from b3_parser.utils.xlsx.xlsx_parser import XLSXParser
 
 from typing import List

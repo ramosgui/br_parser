@@ -1,14 +1,9 @@
 from datetime import datetime
-from typing import Optional
 
 
 class TransactionModel:
 
-
     def __init__(self, product_id: str, raw_transaction: dict):
-
-        ### type tipo da transacao, liquidacao.. etc
-
         self._raw_transaction = raw_transaction
         self.product_id = product_id
 
@@ -21,25 +16,25 @@ class TransactionModel:
         return 'in' if self._raw_transaction['operation'] == 'Credito' else 'out'
 
     @property
-    def qtd(self) -> Optional[float]:
+    def qtd(self) -> float:
         raw_qtd = self._raw_transaction['qtd']
         if raw_qtd != 0:
             return self._raw_transaction['qtd']
-        return None
+        return 0
 
     @property
-    def unit_price(self) -> Optional[float]:
+    def unit_price(self) -> float:
         try:
             return float(self._raw_transaction['unit_price'])
         except ValueError:
-            return None
+            return 0
 
     @property
-    def total_price(self) -> Optional[float]:
+    def total_price(self) -> float:
         try:
             return float(self._raw_transaction['total_price'])
         except ValueError:
-            return None
+            return 0
 
     @property
     def date(self) -> datetime:

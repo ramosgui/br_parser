@@ -1,8 +1,9 @@
 from typing import List
 
 from b3_parser.constants import ALLOWED_PRODUCTS
-from b3_parser.core.models.position_model import PositionModel
-from b3_parser.core.repositories.transaction_repository import TransactionRepository
+from b3_parser.core.position.calculator.position_calculator import PositionCalculator
+from b3_parser.core.position.model.position_model import PositionModel
+from b3_parser.core.transaction.repository.transaction_repository import TransactionRepository
 
 
 class PositionRepository:
@@ -20,9 +21,12 @@ class PositionRepository:
             product_ids = ALLOWED_PRODUCTS[product_id]['tickets']
             transactions = self._transaction_repository.get_transactions(product_ids=product_ids)
             sorted_transactions = sorted(transactions, key=lambda x: (x.date, x.type))
-            position_model = PositionModel(product_id=product_id, transactions=sorted_transactions)
+
+            transfer = []
+            position_calculator = PositionCalculator(sorted_transactions, transfer=transfer)
+            position_model = PositionModel(product_id=product_id, transactions=sorted_transactions, position_calculator=position_calculator)
             print(f"product_id: {position_model.product_id}, qtd: {position_model.qtd}, pm: {position_model.pm}, "
-                  f"type: {position_model.type}")
+                  f"type: {position_model.type}, new_pm: {position_model.new_pm}, new_qtd: {position_model.new_qtd}")
 
             positions.append(position_model)
 
