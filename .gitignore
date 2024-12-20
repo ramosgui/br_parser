@@ -1,2 +1,3 @@
 # Ignore all files inside the files directory
 /b3_parser/files/*
+.idea/*
