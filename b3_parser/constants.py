@@ -1,3 +1,5 @@
+import os
+
 ALLOWED_PRODUCTS = {
     'KNCR11': {
         'tickets': ['KNCR11', 'KNCR12', 'KNCR13', 'KNCR14'],
@@ -121,3 +123,7 @@ def get_product_by_ticket_id(ticket_id: str):
     result = [x for x, y in ALLOWED_PRODUCTS.items() if ticket_id in y['tickets']]
     if result:
         return ALLOWED_PRODUCTS[result[0]]
+
+
+ROOT_FILEPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)))
+

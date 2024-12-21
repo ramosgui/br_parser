@@ -1,8 +1,13 @@
-import pandas as pd
 import glob
+import os
 from typing import List
 
+import pandas as pd
 from pandas import DataFrame
+
+from b3_parser.constants import ROOT_FILEPATH
+
+XLSXFILE_PATH = os.path.join(ROOT_FILEPATH, 'files', 'xlsx', '*')
 
 
 class XLSXParser:
@@ -32,14 +37,12 @@ class XLSXParser:
     def _format_columns(self, df):
         df = df.rename(columns=self._MAP_COLUMNS)
         df['dt'] = pd.to_datetime(df['dt'], dayfirst=True).dt.strftime('%Y-%m-%d')
-        # df['product'] = df['product'].split(' - ')[0]
         df = df.drop(columns=self._COLUMN_TO_DROP, errors='ignore')
         return df
 
     def get_xlsx_content(self) -> List[dict]:
-        file_pattern = f'../../files/*.xlsx'
         all_records = []
-        for file in glob.glob(file_pattern):
+        for file in glob.glob(XLSXFILE_PATH):
             df = pd.read_excel(file, sheet_name='Movimentação', engine='openpyxl')
             df = self._format_columns(df)
             all_records.append(df)

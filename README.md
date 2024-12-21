@@ -55,7 +55,7 @@ O **B3 Parser** é uma ferramenta desenvolvida em Python para processar e analis
 
    ```bash
    python -m venv venv
-   source venv/bin/activate  # No Windows: venv\Scripts\activate
+   source venv/bin/activate  # No Windows: venv\Scripts\Activate
    ```
 
 4. Instale as dependências:

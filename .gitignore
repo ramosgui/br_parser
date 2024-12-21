@@ -1,4 +1,4 @@
 # Ignore all files inside the files directory
-/b3_parser/files/*
+/b3_parser/files/json/*
+/b3_parser/files/xlsx/*
 .idea/*
-*hardcoded_transactions.json
