@@ -10,6 +10,8 @@ class TypeModel:
     EMPRESTIMO = 5
     ATUALIZACAO = 6
     SUBSCRICAO_EXERCIDO = 7
+    COMPRA = 8
+    VENDA = 9
 
     _types = {
         BONIFICAO_ATIVOS: 'bonificação em ativos',
@@ -18,7 +20,9 @@ class TypeModel:
         LIQUIDACAO: 'transferência - liquidação',
         EMPRESTIMO: 'empréstimo',
         ATUALIZACAO: 'atualização',
-        SUBSCRICAO_EXERCIDO: 'direitos de subscrição - exercido'
+        SUBSCRICAO_EXERCIDO: 'direitos de subscrição - exercido',
+        COMPRA: 'compra',
+        VENDA: 'venda'
     }
 
     @classmethod
