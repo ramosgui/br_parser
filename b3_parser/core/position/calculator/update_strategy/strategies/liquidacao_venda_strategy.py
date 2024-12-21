@@ -3,12 +3,13 @@ from b3_parser.core.position.calculator.update_strategy.abstract_position_strate
 from b3_parser.core.transaction.model.transaction_model import TransactionModel
 
 
-class LiquidacaoCompraPositionStrategy(BasePositionStrategy):
+class LiquidacaoVendaPositionStrategy(BasePositionStrategy):
     """
     Estratégia para 'transferência - liquidação'.
     Dependendo de 'in' ou 'out', ajusta a posição.
     Se não houver preço total, usa o pm atual.
     """
+
     def apply(self, trx: TransactionModel, qtd: float, total_price: float) -> PositionMapping:
 
         if self._transferencias:

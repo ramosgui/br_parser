@@ -25,7 +25,8 @@ class PositionCalculator:
         subs = []
 
         for trx in self._position_transactions:
-            strategy = PositionStrategyFactory.get_strategy(type_=trx.type, transfer=transfer, subscricoes=subs)
+            strategy = PositionStrategyFactory.get_strategy(type_=trx.type, transfer=transfer, subscricoes=subs,
+                                                            in_out=trx.in_out)
             if strategy:
                 qtd, total_price = strategy.apply(trx, qtd, total_price)
 
@@ -41,7 +42,8 @@ class PositionCalculator:
         subs = []
 
         for trx in self._position_transactions:
-            strategy = PositionStrategyFactory.get_strategy(type_=trx.type, transfer=transfer, subscricoes=subs)
+            strategy = PositionStrategyFactory.get_strategy(type_=trx.type, transfer=transfer, subscricoes=subs,
+                                                            in_out=trx.in_out)
             if strategy:
                 qtd, total_price = strategy.apply(trx, qtd, total_price)
         return round(total_price / qtd, 2) if qtd > 0 else 0.0
