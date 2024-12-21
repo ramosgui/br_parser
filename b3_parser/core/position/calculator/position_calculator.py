@@ -1,7 +1,4 @@
-from typing import List
-
 from b3_parser.core.position.calculator.update_strategy.position_strategy_factory import PositionStrategyFactory
-from b3_parser.core.transaction.model.transaction_model import TransactionModel
 
 
 class PositionCalculator:
@@ -9,10 +6,7 @@ class PositionCalculator:
     Classe responsável por calcular a posição (quantidade e preço médio) a partir de uma lista de transações.
     Aplica diferentes estratégias de acordo com o tipo da transação.
     """
-    def __init__(self):
-        self._position_transactions = None
-
-    def initialize_transactions(self, position_transactions: List[TransactionModel]):
+    def __init__(self, position_transactions):
         self._position_transactions = position_transactions
 
     def calculate_quantity(self) -> int:

@@ -31,7 +31,7 @@ class PositionStrategyFactory:
         PositionMapping(type=TypeModel.LIQUIDACAO, in_out=INOUTModel.OUT): LiquidacaoVendaPositionStrategy,
         PositionMapping(type=TypeModel.EMPRESTIMO, in_out=INOUTModel.IN): EmprestimoPositionStrategy,
         PositionMapping(type=TypeModel.ATUALIZACAO, in_out=INOUTModel.IN): AtualizacaoPositionStrategy,
-        PositionMapping(type=TypeModel.SUBSCRICAO_EXERCIDO, in_out=INOUTModel.IN): SubscricaoPositionStrategy
+        PositionMapping(type=TypeModel.SUBSCRICAO_EXERCIDO, in_out=INOUTModel.OUT): SubscricaoPositionStrategy
     }
 
     @staticmethod
