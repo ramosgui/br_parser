@@ -1,4 +1,3 @@
-from b3_parser.core.position.calculator.position_calculator import PositionCalculator
 from b3_parser.core.position.model.position_model import PositionModel
 from b3_parser.core.position.repository.position_repository import PositionRepository
 from b3_parser.core.transaction.repository.transaction_repository import TransactionRepository
@@ -33,8 +32,7 @@ class PositionService:
 if __name__ == '__main__':
     xlsx_parser = XLSXParser()
     transaction_repository = TransactionRepository(xlsx_parser)
-    position_calculator = PositionCalculator()
-    position_repository = PositionRepository(transaction_repository, position_calculator)
+    position_repository = PositionRepository(transaction_repository)
 
     service = PositionService(position_repository)
     ret = service.get_positions()

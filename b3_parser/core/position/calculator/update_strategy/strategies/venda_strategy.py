@@ -3,12 +3,10 @@ from b3_parser.core.position.calculator.update_strategy.abstract_position_strate
 from b3_parser.core.transaction.model.transaction_model import TransactionModel
 
 
-class BonusDesdobroPositionStrategy(BasePositionStrategy):
-    """
-    Estratégia para 'bonificação em ativos' e 'desdobro'.
-    Soma a quantidade e o preço total.
-    """
+class VendaPositionStrategy(BasePositionStrategy):
+
     def apply(self, trx: TransactionModel, qtd: float, total_price: float) -> PositionMapping:
-        qtd += trx.qtd
-        total_price += trx.total_price
+        pm = total_price / qtd
+        qtd -= trx.qtd
+        total_price -= trx.qtd * pm
         return PositionMapping(qtd=qtd, total_price=total_price)

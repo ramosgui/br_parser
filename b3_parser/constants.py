@@ -93,6 +93,26 @@ ALLOWED_PRODUCTS = {
         'tickets': ['BBAS3'],
         'type': 'Ações',
         'ideal': 0.05
+    },
+    'Tesouro IPCA+ 2029': {
+        'tickets': ['Tesouro IPCA+ 2029'],
+        'type': 'Renda Fixa',
+        'ideal': 0.01
+    },
+    'Tesouro Prefixado 2027': {
+        'tickets': ['Tesouro Prefixado 2027'],
+        'type': 'Renda Fixa',
+        'ideal': 0.01
+    },
+    'BTC': {
+        'tickets': ['BTC'],
+        'type': 'Criptomoedas',
+        'ideal': 0.1
+    },
+    'SGOV': {
+        'tickets': ['SGOV'],
+        'type': 'ETFs',
+        'ideal': 0.09
     }
 }
 

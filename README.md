@@ -1,68 +1,41 @@
 # B3 Parser
 
-O **B3 Parser** é uma ferramenta desenvolvida em Python para processar e analisar dados financeiros da B3 (Bolsa de Valores Brasileira). Ela permite a leitura de arquivos de movimentação e negociação, facilitando a extração e manipulação de informações relevantes para análises financeiras.
+[![Python](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/downloads/release/python-380/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+O **B3 Parser** é uma ferramenta desenvolvida em Python para processar e analisar dados financeiros da B3 (Bolsa de Valores Brasileira). Ele permite a leitura e manipulação de arquivos Excel contendo informações de movimentação e negociação financeira, automatizando cálculos de posição e facilitando análises.
+
+---
+
+## Índice
+
+1. [Funcionalidades](#funcionalidades)
+2. [Pré-requisitos](#pré-requisitos)
+3. [Instalação](#instalação)
+4. [Estrutura do Projeto](#estrutura-do-projeto)
+5. [Uso](#uso)
+6. [Contribuição](#contribuição)
+7. [Licença](#licença)
+
+---
 
 ## Funcionalidades
 
-- **Leitura de Arquivos Excel**: Processa arquivos `.xlsx` contendo dados de movimentações e negociações financeiras.
-- **Cálculo de Posições**: Calcula posições financeiras com base nas transações fornecidas.
-- **Suporte a Múltiplos Produtos**: Gerencia diversos produtos financeiros conforme definidos no arquivo `constants.py`.
+- **Leitura de Arquivos Excel**: Processa dados financeiros de movimentações e negociações.
+- **Cálculo de Posições**: Automatiza o cálculo de posições financeiras.
+- **Suporte a Produtos Financeiros**: Gerencia produtos como ações, fundos imobiliários, e outros.
+- **Extensível**: Fácil de adaptar para novos tipos de produtos ou estratégias de cálculo.
 
-## Estrutura do Projeto
-
-```plaintext
-b3_parser/
-├── application/
-│   └── position/
-│       ├── position_service.py
-│       └── __init__.py
-├── core/
-│   ├── position/
-│   │   ├── calculator/
-│   │   │   ├── position_calculator.py
-│   │   │   ├── update_strategy/
-│   │   │   │   ├── position_update_strategy.py
-│   │   │   │   ├── position_strategy_factory.py
-│   │   │   │   └── __init__.py
-│   │   │   └── __init__.py
-│   │   ├── model/
-│   │   │   ├── position_model.py
-│   │   │   └── __init__.py
-│   │   ├── repository/
-│   │   │   ├── position_repository.py
-│   │   │   └── __init__.py
-│   │   └── __init__.py
-│   ├── transaction/
-│   │   ├── model/
-│   │   │   ├── transaction_model.py
-│   │   │   └── __init__.py
-│   │   ├── repository/
-│   │   │   ├── transaction_repository.py
-│   │   │   └── __init__.py
-│   │   └── __init__.py
-│   └── __init__.py
-├── utils/
-│   ├── xlsx/
-│   │   ├── xlsx_parser.py
-│   │   └── __init__.py
-│   └── __init__.py
-├── files/
-│   ├── 2022.xlsx
-│   ├── 2023.xlsx
-│   ├── 2024.xlsx
-│   └── __init__.py
-├── first_file_movimentacao.py
-├── first_file_negociacao.py
-├── requirements.txt
-└── constants.py
-```
+---
 
 ## Pré-requisitos
 
 - Python 3.8 ou superior.
-- Bibliotecas listadas no `requirements.txt`:
+- Bibliotecas necessárias (especificadas no `requirements.txt`):
   - `pandas`
   - `openpyxl`
+
+---
 
 ## Instalação
 
@@ -82,7 +55,7 @@ b3_parser/
 
    ```bash
    python -m venv venv
-   source venv/bin/activate  # No Windows: venv\Scripts\Activate
+   source venv/bin/activate  # No Windows: venv\Scripts\activate
    ```
 
 4. Instale as dependências:
@@ -91,37 +64,70 @@ b3_parser/
    pip install -r requirements.txt
    ```
 
+---
+
+## Estrutura do Projeto
+
+```plaintext
+b3_parser/
+├── application/          # Serviços principais
+├── core/                 # Cálculos e estratégias
+├── files/                # Arquivos de entrada (.xlsx)
+├── utils/                # Funções auxiliares
+├── service.py            # Script principal para execução
+└── requirements.txt      # Dependências do projeto
+```
+
+---
+
 ## Uso
 
-1. Certifique-se de que os arquivos de dados (`.xlsx`) estejam no diretório `files/`.
+1. Coloque os arquivos de dados no diretório `files/`:
+   - Exemplo: `2023.xlsx`
+
 2. Execute o serviço principal para processar os dados:
 
    ```bash
    python service.py
    ```
 
+### Exemplo de Entrada e Saída
+
+#### Entrada (`files/2023.xlsx`):
+| Data       | Produto   | Operação  | Quantidade | Valor   |
+|------------|-----------|-----------|------------|---------|
+| 2023-01-01 | ABEV3     | Compra    | 100        | 1500.00 |
+| 2023-01-15 | ABEV3     | Venda     | 50         | 800.00  |
+
+#### Saída (cálculo de posições):
+```json
+{
+  "produto": "ABEV3",
+  "posição_final": 50,
+  "valor_médio": 15.00
+}
+```
+
+---
+
 ## Contribuição
 
 1. Faça um fork do projeto.
 2. Crie uma branch para sua feature:
-
    ```bash
    git checkout -b minha-feature
    ```
-
 3. Commit suas alterações:
-
    ```bash
-   git commit -m 'Adiciona minha feature'
+   git commit -m "Adiciona minha feature"
    ```
-
 4. Envie para o repositório remoto:
-
    ```bash
    git push origin minha-feature
    ```
-
 5. Abra um Pull Request.
+
+---
 
 ## Licença
 
