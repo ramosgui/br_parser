@@ -10,7 +10,7 @@ from b3_parser.core.position.calculator.update_strategy.strategies.desdobro_stra
 from b3_parser.core.position.calculator.update_strategy.strategies.emprestimo_strategy import EmprestimoPositionStrategy
 from b3_parser.core.position.calculator.update_strategy.strategies.leilao_de_fracao_strategy import \
     LeilaoDeFracaoPositionStrategy
-from b3_parser.core.position.calculator.update_strategy.strategies.liquidacao_strategy import LiquidacaoCompraPositionStrategy
+from b3_parser.core.position.calculator.update_strategy.strategies.liquidacao_compra_strategy import LiquidacaoCompraPositionStrategy
 from b3_parser.core.position.calculator.update_strategy.strategies.liquidacao_venda_strategy import \
     LiquidacaoVendaPositionStrategy
 from b3_parser.core.position.calculator.update_strategy.strategies.subscricao_strategy import SubscricaoPositionStrategy
