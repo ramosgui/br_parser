@@ -1,4 +1,5 @@
 from b3_parser.core.position.calculator.update_strategy.position_strategy_factory import PositionStrategyFactory
+from b3_parser.core.position.calculator.update_strategy.strategies.provento_strategy import ProventoPositionStrategy
 
 
 class PositionCalculator:
@@ -36,3 +37,11 @@ class PositionCalculator:
                 qtd, total_price = strategy.apply(trx, qtd, total_price)
 
         return round(total_price / qtd, 2) if qtd > 0 else 0.0
+
+    def calculate_proventos(self) -> float:
+        qtd = 0
+        total_price = 0
+        strategy = ProventoPositionStrategy()
+        for trx in self._position_transactions:
+            _, total_price = strategy.apply(trx=trx, qtd=qtd, total_price=total_price)
+        return round(total_price, 2)

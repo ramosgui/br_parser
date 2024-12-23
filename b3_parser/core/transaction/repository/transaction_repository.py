@@ -36,7 +36,17 @@ class TransactionRepository:
             trx['total_price'] = trx['unit_price'] * trx['qtd']
         return trxs
 
-    def get_transactions(self, product_ids: List[str]) -> List[TransactionModel]:
+    def get_transactions(self) -> List[TransactionModel]:
+        all_transactions = self._get_hardcoded_transactions()
+        all_transactions.extend(self._xlsx_transactions)
+        transactions = []
+        for raw_trx in all_transactions:
+            product_id = raw_trx['product'].split(' - ')[0]
+            model = TransactionModel(product_id=product_id, raw_transaction=raw_trx)
+            transactions.append(model)
+        return transactions
+
+    def get_transactions_by_product_ids(self, product_ids: List[str]) -> List[TransactionModel]:
         """
         Recupera transações filtradas pelos IDs de produtos fornecidos.
         Este método combina transações do arquivo JSON e da planilha XLSX, filtrando apenas aquelas cujo ID do produto
@@ -44,13 +54,9 @@ class TransactionRepository:
         :param product_ids: Uma lista de IDs de produtos a serem filtrados.
         :return: Uma lista de instâncias de `TransactionModel` representando as transações filtradas.
         """
-        all_transactions = self._get_hardcoded_transactions()
-        all_transactions.extend(self._xlsx_transactions)
         transactions = []
-        for raw_trx in all_transactions:
-            product_id = raw_trx['product'].split(' - ')[0]
-            if product_id in product_ids:
-                model = TransactionModel(product_id=product_id, raw_transaction=raw_trx)
-                transactions.append(model)
-
+        all_transactions = self.get_transactions()
+        for trx in all_transactions:
+            if trx.product_id in product_ids:
+                transactions.append(trx)
         return transactions

@@ -14,7 +14,6 @@ warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl")
 class PositionService:
     """
     Uma classe de serviço responsável por gerenciar e formatar dados de posições.
-
     Esta classe interage com o `PositionRepository` para recuperar os dados de posições, processá-los e fornecer uma
     saída formatada para uso posterior. Ela abstrai a lógica do repositório de dados subjacente e foca em fornecer uma
     API limpa para acesso a informações relacionadas a posições.
@@ -41,13 +40,13 @@ class PositionService:
         """
         formatted_positions = []
         for pos in positions:
-            formatted_positions.append({
-                'product': pos.product_id,
-                'pm': pos.pm,
-                'qtd': pos.qtd,
-                'type': pos.type,
-                'ideal': pos.ideal
-            })
+            if pos.qtd:
+                formatted_positions.append({
+                    'product': pos.product_id,
+                    'pm': pos.pm,
+                    'qtd': pos.qtd,
+                    'proventos': pos.proventos
+                })
         return formatted_positions
 
     def get_positions(self):

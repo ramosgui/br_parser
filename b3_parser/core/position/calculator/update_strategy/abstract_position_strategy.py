@@ -9,7 +9,7 @@ PositionMapping = namedtuple('PositionMapping', ['qtd', 'total_price'])
 
 class BasePositionStrategy(ABC):
 
-    def __init__(self, transferencias: List[TransactionModel], subscricoes: List[TransactionModel]):
+    def __init__(self, transferencias: List[TransactionModel] = None, subscricoes: List[TransactionModel] = None):
         self._transferencias = transferencias
         self._subscricoes = subscricoes
 
