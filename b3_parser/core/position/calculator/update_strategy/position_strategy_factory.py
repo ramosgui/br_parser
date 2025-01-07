@@ -1,5 +1,6 @@
 from collections import namedtuple
 from typing import List
+from typing import Set
 
 from b3_parser.core.position.calculator.update_strategy.abstract_position_strategy import BasePositionStrategy
 from b3_parser.core.position.calculator.update_strategy.strategies.atualizacao_strategy import \
@@ -39,9 +40,9 @@ class PositionStrategyFactory:
     }
 
     @staticmethod
-    def get_strategy(type_: str, in_out: str, transfer: List[TransactionModel],
+    def get_strategy(type_: str, in_out: str, transfer_control: Set[float],
                      subscricoes: List[TransactionModel]) -> BasePositionStrategy:
 
         position_mapping = PositionMapping(type=TypeModel.get_id(type_), in_out=INOUTModel.get_id(in_out))
         if position_mapping in PositionStrategyFactory._strategies:
-            return PositionStrategyFactory._strategies[position_mapping](transfer, subscricoes)
+            return PositionStrategyFactory._strategies[position_mapping](transfer_control, subscricoes)

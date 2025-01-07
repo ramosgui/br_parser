@@ -27,7 +27,11 @@ class PositionRepository:
                 product_ids = [product_id[0:4]+x for x in ['11', '12', '13', '14']]
             else:
                 product_ids = [product_id]
-            transactions = self._transaction_repository.get_transactions_by_product_ids(product_ids)
+
+            # if product_id != 'BBAS3':
+            #     continue
+
+            transactions = self._transaction_repository.get_transactions(product_ids=product_ids)
             sorted_transactions = sorted(transactions, key=lambda x: (x.date, x.type))
             position_calculator = PositionCalculator(sorted_transactions)
 

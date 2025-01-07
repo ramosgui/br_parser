@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from collections import namedtuple
 from typing import List
+from typing import Set
 
 from b3_parser.core.transaction.model.transaction_model import TransactionModel
 
@@ -9,8 +10,8 @@ PositionMapping = namedtuple('PositionMapping', ['qtd', 'total_price'])
 
 class BasePositionStrategy(ABC):
 
-    def __init__(self, transferencias: List[TransactionModel] = None, subscricoes: List[TransactionModel] = None):
-        self._transferencias = transferencias
+    def __init__(self, transfer_control: Set[float] = None, subscricoes: List[TransactionModel] = None):
+        self._transfer_control = transfer_control
         self._subscricoes = subscricoes
 
     @abstractmethod

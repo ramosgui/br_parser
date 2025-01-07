@@ -22,3 +22,7 @@ class PositionModel:
     @property
     def proventos(self) -> float:
         return self._position_calculator.calculate_proventos()
+
+    @property
+    def proventos_by_month(self):
+        return self._position_calculator.calculate_provento_by_month()

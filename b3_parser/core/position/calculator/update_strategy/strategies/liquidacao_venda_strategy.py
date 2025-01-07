@@ -7,8 +7,8 @@ class LiquidacaoVendaPositionStrategy(BasePositionStrategy):
 
     def apply(self, trx: TransactionModel, qtd: float, total_price: float) -> PositionMapping:
 
-        if self._transferencias:
-            self._transferencias.pop(0)
+        if self._transfer_control:
+            # self._transferencias.pop(0)
             return qtd, total_price
 
         pm = (total_price / qtd) if qtd > 0 else 0

@@ -12,11 +12,14 @@ class ProventoService:
         position_models = self._position_repository.get_all_positions()
         return sum([x.proventos for x in position_models])
 
+    def get_proventos_by_month(self):
+        position_models = self._position_repository.get_all_positions()
+        return sum([x.proventos_by_month for x in position_models])
 
 if __name__ == '__main__':
     xlsx_parser = XLSXParser()
     transaction_repository = TransactionRepository(xlsx_parser)
     position_repository = PositionRepository(transaction_repository)
     service = ProventoService(position_repository)
-    ret = service.get_proventos()
+    ret = service.get_proventos_by_month()
     print(ret)
